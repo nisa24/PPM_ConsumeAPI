@@ -27,7 +27,7 @@ class PostServices {
     Uri url = Uri.parse(endPoint);
     var jsonBody = post.toMap();
 
-    return await http.post(
+    return await http.put(
       url,
       body: jsonEncode(jsonBody),
       headers: RequestHelper.basicHeader(),

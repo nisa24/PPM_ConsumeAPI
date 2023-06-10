@@ -66,6 +66,12 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: Card(
                           child: ListTile(
+                            onLongPress: () {
+                              AppRoutes.goRouter.pushNamed(
+                                AppRoutes.editpost,
+                                extra: snapshot.data![index],
+                              );
+                            },
                             onTap: () {
                               GoRouter.of(context).pushNamed(
                                 AppRoutes.post,
@@ -95,13 +101,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               } else {
-                return Text("tidak ada data");
+                return const Text("tidak ada data");
               }
             } else {
-              return Text("error");
+              return const Text("error");
             }
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          AppRoutes.goRouter.pushNamed(AppRoutes.addpost);
+        },
+        label: const Text("Tambah Berita"),
       ),
     );
   }

@@ -23,14 +23,15 @@ class PostController {
     });
   }
 
-  Future<List<comment>> fetchcomments(int id)async{
-    return await PostServices().fetchComments(id).then((rest){
-    if (rest.statusCode == HttpStatus.ok) {
+  Future<List<comment>> fetchcomments(int id) async {
+    return await PostServices().fetchComments(id).then((rest) {
+      if (rest.statusCode == HttpStatus.ok) {
         var jsonData = jsonDecode(rest.body);
-        return List.generate(jsonData.length, 
-        (index) => comment.fromMap(jsonData[index]),
+        return List.generate(
+          jsonData.length,
+          (index) => comment.fromMap(jsonData[index]),
         );
-      } else{
+      } else {
         throw Exception();
       }
     });
@@ -39,6 +40,32 @@ class PostController {
   Future<bool> delete(int id) async {
     return await PostServices().delete(id).then((res) {
       inspect(res);
+      if (res.statusCode == HttpStatus.ok) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
+  Future<bool> create(Post post) async {
+    return await PostServices().create(post).then((res) {
+      inspect(res);
+      print(res.body);
+      if (res.statusCode == HttpStatus.ok) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
+  Future<bool> patch(Post post) async {
+    return await PostServices()
+        .patch(id: post.id, title: post.title, body: post.body)
+        .then((res) {
+      inspect(res);
+      print(res.body);
       if (res.statusCode == HttpStatus.ok) {
         return true;
       } else {

@@ -3,6 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/post_controller.dart';
 import 'package:flutter_application_1/models/post.dart';
+<<<<<<< HEAD
+=======
+import 'package:flutter_application_1/utils/app_routes.dart';
+import 'package:go_router/go_router.dart';
+>>>>>>> vini
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,6 +52,10 @@ class _HomePageState extends State<HomePage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text("post deleted"),
+<<<<<<< HEAD
+=======
+                                  behavior : SnackBarBehavior.floating,
+>>>>>>> vini
                                 ),
                               );
                               setState(() {});
@@ -54,6 +63,10 @@ class _HomePageState extends State<HomePage> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text("failed to delete post"),
+<<<<<<< HEAD
+=======
+                                  behavior : SnackBarBehavior.floating,
+>>>>>>> vini
                                 ),
                               );
                               setState(() {});
@@ -62,6 +75,13 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: Card(
                           child: ListTile(
+<<<<<<< HEAD
+=======
+                            onTap: () {
+                              GoRouter.of(context).pushNamed(AppRoutes.post,extra: snapshot.data![index],
+                              );
+                            },
+>>>>>>> vini
                             title: Text(
                               snapshot.data![index].title,
                               maxLines: 1,
